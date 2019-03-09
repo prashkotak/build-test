@@ -27,7 +27,7 @@ pipeline {
                                         sourceFiles: 'tmp/trainSchedule.zip',
                                         removePrefix: 'tmp/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'sudo mkdir lmv'
+                                        execCommand: 'sudo mkdir -p  /tmp/lmv'
                                     )
                                 ]
                             )
