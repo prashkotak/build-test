@@ -27,7 +27,7 @@ pipeline {
                                         sourceFiles: 'tmp/trainSchedule.zip',
                                         removePrefix: 'tmp/',
                                         remoteDirectory: '/tmp',
-                                        execCommand: 'sudo touch /tmp/lmv'
+                                        execCommand: 'sudo touch /tmp/chirag'
                                     )
                                 ]
                             )
