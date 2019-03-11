@@ -19,18 +19,19 @@ pipeline {
                 }
 			}				
         }
-	stage('DockerPush') {
-	     when {
+		stage('DockerPush') {
+			when {
                 branch 'master'
-              }
-	      steps {
-		 script {
+            }
+			steps {
+				script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-login') {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
                     }
+				}
+			} 	   		
 		}
-	}   		
         stage('Deploy') {
             agent {
                 label 'prod'
@@ -38,7 +39,7 @@ pipeline {
             steps {
                  echo 'Deploying....'
                   sh 'mkdir -p /tmp/lllswwl'
-             }
+            }
         }
     }
 }
