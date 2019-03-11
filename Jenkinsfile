@@ -1,15 +1,21 @@
 pipeline {
-    agent any
+    agent  agent { label 'master' }
 
     stages {
         stage('Build') {
             steps {
                 echo 'Building..'
+                
             }
         }
-        stage('Test') {
+        stage('DeployToStaging') {
+            when {
+                branch 'master'
+            }
             steps {
                 echo 'Testing..'
+                sh 'mkdir -p /tmp/llll'                  
+                
             }
         }
         stage('Deploy') {
