@@ -19,10 +19,13 @@ pipeline {
             }
         }
         stage('Deploy') {
-             steps {
+            agent {
+                label 'staging'
+            }
+            steps {
                  echo 'Deploying....'
-                  sh 'mkdir -p /tmp/lllsl'
-              }
+                  sh 'mkdir -p /tmp/lllswwl'
+             }
         }
     }
 }
