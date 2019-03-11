@@ -14,13 +14,13 @@ pipeline {
             }
             steps {
                 echo 'Testing..'
-                sh 'mkdir -p /tmp/llll'                  
+                sh 'docker pull httpd'                  
                 
             }
         }
         stage('Deploy') {
             agent {
-                label 'staging'
+                label 'prod'
             }
             steps {
                  echo 'Deploying....'
