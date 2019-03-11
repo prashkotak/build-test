@@ -19,9 +19,13 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+            node('staging') {
+            
+              steps {
+                 echo 'Deploying....'
+                  sh 'mkdir -p /tmp/lllsl'
+              }
+            }  
         }
     }
 }
