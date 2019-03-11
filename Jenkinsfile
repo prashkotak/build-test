@@ -19,6 +19,18 @@ pipeline {
                 }
 			}				
         }
+	stage('DockerPush') {
+	     when {
+                branch 'master'
+              }
+	      steps {
+		 script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-login') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                    }
+		}
+	}   		
         stage('Deploy') {
             agent {
                 label 'prod'
@@ -30,4 +42,3 @@ pipeline {
         }
     }
 }
-
