@@ -14,10 +14,8 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("willbla/train-schedule")
-                    app.inside {
-                        sh 'echo $(curl localhost:8082)'
-                    }
+                    app = docker.build("prashkotak/build-test")
+                    sh 'docker run -dit --name my-running-app -p 8082:80 httpd' 		
                 }
 			}				
         }
