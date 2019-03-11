@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     app = docker.build("prashkotak/build-test")
-                    sh 'docker run -dit --name my-running-app -p 8082:80 httpd' 		
+                    sh 'docker run -dit --name my-running-app -p 8082:80 docker.io/httpd' 		
                 }
 			}				
         }
