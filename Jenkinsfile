@@ -13,10 +13,12 @@ pipeline {
                 branch 'master'
             }
             steps {
-                echo 'Testing..'
-                sh 'docker pull httpd'                  
-                
-            }
+                script {
+                    app = docker.build("willbla/train-schedule")
+                    app.inside {
+                        sh 'echo $(curl localhost:8082)'
+                    }
+                            }
         }
         stage('Deploy') {
             agent {
