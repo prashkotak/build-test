@@ -1,40 +1,12 @@
 pipeline {
-    agent none
+    agent {
+        docker { image 'node:7-alpine' }
+    }
     stages {
-        stage('Build') {
+        stage('Test') {
             steps {
-                echo 'Running build automation'
+                sh 'node --version'
             }
         }
-		stage('DeployToStaging') {
-            when {
-                branch 'master'
-            }
-        steps {
-                withCredentials([usernamePassword(credentialsId: 'webserver', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
-                    sshPublisher(
-                        failOnError: true,
-                        continueOnError: false,
-                        publishers: [
-                            sshPublisherDesc(
-                                configName: 'master',
-                                sshCredentials: [
-                                    username: "$USERNAME",
-                                    encryptedPassphrase: "$USERPASS"
-                                ], 
-                                transfers: [
-                                    sshTransfer(
-                                        sourceFiles: 'tmp/trainSchedule.zip',
-                                        removePrefix: 'tmp/',
-                                        remoteDirectory: '/tmp',
-                                        execCommand: 'docker pull httpd'
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                }
-            }
-        }
-	}    
+    }
 }
