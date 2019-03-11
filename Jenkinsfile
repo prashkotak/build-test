@@ -18,7 +18,8 @@ pipeline {
                     app.inside {
                         sh 'echo $(curl localhost:8082)'
                     }
-                            }
+                }
+			}				
         }
         stage('Deploy') {
             agent {
@@ -31,3 +32,4 @@ pipeline {
         }
     }
 }
+
