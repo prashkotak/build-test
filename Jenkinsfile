@@ -14,7 +14,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("prashkotak/build-test")
+                    app = docker.build("prashkotak/prashkotak/testdocker")
                    
                 }
 			}				
